@@ -1,0 +1,21 @@
+.yellow{
+    width: 40px;
+    height: 40px;
+    background-color: yellow;
+}
+
+.blue{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(25, 0, 255);
+}
+
+.master{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hide{
+    display: hidden
+}

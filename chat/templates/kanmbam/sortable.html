@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/sortable.css'%}">
+</head>
+<body>
+  <form method="post">
+    {% csrf_token %}
+  <input type="hidden" value="" id="temp">
+  <div class="masterofall">
+  <div class="mastermaster">
+    <div class="titulo">
+        <h1>Tarefas A fazer</h1>
+    </div>
+    <div class="masterdiv" id="master">
+        {% for x in afazer%}
+        <div class="childdiv" id="div{{x.id}}">
+          <div class="teste">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            
+          </div>
+            <div class="info">
+              <h3 class="textoartist"> {{x.nome}}</h3>
+              <h5 class="duration"> Data de criação: {{ x.data_criacao}}</h5>
+            </div>
+        
+        
+            <input type="hidden" name="input{{x.id}}"  id='{{x.id}}' value="{{x.tipo}}">
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+    <div class="mastermaster">
+      <div class="titulo">
+          <h1>Tarefas Feitas</h1>
+      </div>
+      <div class="masterdiv" id="master2">
+          
+        {% for x in feito %}
+        <div class="childdiv" id="div{{x.id}}">
+          <div class="teste">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            
+          </div>
+            <div class="info">
+              <h3 class="textoartist"> {{x.nome}}</h3>
+              <h5 class="duration"> Data de criação: {{ x.data_criacao}}</h5>
+            </div>
+        
+        
+            <input type="hidden" name="input{{x.id}}"  id='{{x.id}}' value="{{x.tipo}}">
+        </div>
+        {% endfor %}
+      
+      
+      </div>
+      
+      </div>
+      <input type="submit" value="Salvar mudanças">
+    </form>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.js"></script>
+    <script src="{% static 'js/sortable.js' %}"></script>
+</body>
+</html>

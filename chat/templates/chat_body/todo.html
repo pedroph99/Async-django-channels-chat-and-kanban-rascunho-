@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    {% for x in objetos_todo %}
+        <div class="flex flex-row ">
+            {{x.mensagem}}
+        <form method="post">
+            {% csrf_token %}
+            <input type="checkbox" {% if x.ativo == True %} checked {% endif %} hx-post="{{x.get_absolute_url}}">
+        </form>
+        {{x.ativo}}
+        </div>
+    {% endfor %}
+</body>
+</html>

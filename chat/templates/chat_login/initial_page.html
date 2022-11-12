@@ -1,0 +1,55 @@
+<h1>Bem vindo, {{usuario.user.username}} </h1>
+
+<textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+    <script>
+        
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/home/'
+            + '{{usuario.slug}}'+'/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            console.log('ok')
+            var date = new Date
+            horario_hora = date.getHours()
+            horario_minutos = date.getMinutes()
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.usuario+':'+'['+horario_hora+':'+horario_minutos+']'+ data.message + '\n');
+        };
+        
+
+
+        chatSocket.onclose = function(e) {
+
+            console.log('Chat socket closed unexpectedly');
+        };
+
+        chatSocket.onopen = function(e) {
+
+            console.error('Chat socket closed unexpectedly');
+};
+    
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'usuario': '{{usuario.user.username}}'
+
+            }));
+            messageInputDom.value = '';
+
+        };
+    </script>

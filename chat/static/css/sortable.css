@@ -1,0 +1,63 @@
+.masterdiv{
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 200px;
+
+}
+
+
+.childdiv{
+    background-color: beige;
+    width: 400px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+   
+}
+
+.div-sgv{
+
+    
+}
+.teste{
+    width: 25px;
+    height: 25px;
+}
+
+.info{
+
+    margin-right: 20px;
+
+    padding: 0px;
+    
+}
+
+.duration{
+    text-align: end;
+    padding-top: 0px;
+    margin-top: -20px;
+}
+
+.titulo{
+    background-color: beige;
+    border-bottom: solid 1px ;
+
+}
+
+.mastermaster{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    text-align: center;
+    
+}
+.masterofall{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
